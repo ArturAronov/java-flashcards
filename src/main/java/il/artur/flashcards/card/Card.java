@@ -7,7 +7,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 
 public record Card(
-        @NotEmpty Integer id,
+        Integer id,
         @PositiveOrZero Integer correct,
         @PositiveOrZero Integer wrong,
         @PositiveOrZero Integer skipped,
