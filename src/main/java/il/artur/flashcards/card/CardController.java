@@ -22,41 +22,23 @@ public class CardController {
     List<Card> findAll() {
         return cardRepository.findAll();
     }
-//
-//    @ResponseStatus(HttpStatus.FOUND)
-//    @GetMapping("/{id}")
-//    Card findById(@PathVariable Integer id) {
-//        Optional<Card> card = cardRepository.findById(id);
-//
-//        if(card.isEmpty()) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-//        }
-//
-//        return card.get();
-//    }
-//
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @PostMapping("")
-//    void create(@Valid @RequestBody Card card) {
-//        cardRepository.create(card);
-//    }
-//
-//
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("")
+    void create(@Valid @RequestBody Card card) {
+        System.out.println(card);
+        cardRepository.create(card);
+    }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("")
     void update(@RequestBody Card card) {
-        System.out.println(card);
         cardRepository.update(card);
     }
-//
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    @DeleteMapping("/{id}")
-//    void delete(@PathVariable Integer id) {
-//        cardRepository.delete(id);
-//    }
-//
-//    @GetMapping("/hello")
-//    String home() {
-//        return "hello world";
-//    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable Integer id) {
+        cardRepository.delete(id);
+    }
 }
