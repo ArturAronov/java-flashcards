@@ -1,20 +1,14 @@
 // Version 2: in-memory SQL
 
 package il.artur.flashcards.card;
-import il.artur.flashcards.card.Card;
-import jakarta.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.simple.JdbcClient;
 
-import org.springframework.stereotype.Repository;
-import org.springframework.util.Assert;
-import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Optional;
+import org.springframework.util.Assert;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class CardRepository {
@@ -40,17 +34,25 @@ public class CardRepository {
 
         Assert.state(updated == 1, "Failed to update card " + card.id());
     }
+
+    public void create(Card card) {
+        var updated = jdbcClient
+                .sql("INSERT INTO Card(question, answer, category) VALUES (?, ?, ?)")
+                .params(List.of(card.question(), card.answer(), card.category().toString()))
+                .update();
+
+        Assert.state(updated == 1, "Failed to create new card");
+    }
+
+    public void delete(Integer id) {
+        var updated = jdbcClient
+                .sql("DELETE FROM Card WHERE id = :id")
+                .param("id", id)
+                .update();
+
+        Assert.state(updated == 1, "Failed to delete card with id: " + id);
+    }
 }
-        //        var updated = jdbcClient
-//            .sql("UPDATE Card SET question = ?, answer = ?, date_edited = CURRENT_TIMESTAMP WHERE id = ?")
-//            .param(card.question())
-//            .param(card.answer())
-//            .param(card.id())
-//            .update();
-//        }
-//
-//        Assert.state(updated = 1, "Failed to create card" + card.id());
-//}
 
 
 
