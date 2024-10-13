@@ -1,13 +1,14 @@
 package il.artur.flashcards;
 
-import il.artur.flashcards.card.Card;
-import il.artur.flashcards.card.Category;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import il.artur.flashcards.card.Card;
+import il.artur.flashcards.card.Category;
+import il.artur.flashcards.card.CardRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDateTime;
 
@@ -22,10 +23,10 @@ public class Application {
 	}
 
 	@Bean
-	CommandLineRunner runner() {
+	CommandLineRunner card(CardRepository cardRepository) {
 		return args -> {
-			Card card = new Card(1, 0, 0, 0, "foo", "bar", Category.EASY, LocalDateTime.now(), LocalDateTime.now());
-			log.info("Card: " + card);
+			Card card = new Card(null, null, null, null, "Foo", "Bar", Category.EASY, null, null);
+			cardRepository.create(card);
 		};
 	}
 }
