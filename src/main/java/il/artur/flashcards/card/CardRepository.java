@@ -7,13 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.simple.JdbcClient;
 
 import java.util.List;
+import java.util.ArrayList;
 import org.springframework.util.Assert;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class CardRepository {
-    private static final Logger log = LoggerFactory.getLogger(CardRepository.class);
     private final JdbcClient jdbcClient;
+    private final List<Card> cards = new ArrayList<>();
+    private static final Logger log = LoggerFactory.getLogger(CardRepository.class);
 
     public CardRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
@@ -24,6 +26,16 @@ public class CardRepository {
                 .sql("SELECT * FROM card")
                 .query(Card.class)
                 .list();
+    }
+
+    public void saveAll(List<Card> cards) {
+        cards.stream().forEach(this::create);
+        // alternative
+        // cards.stream().forEach(card -> this.create(card))
+    }
+
+    public int count() {
+        return cards.size();
     }
 
     public void update(Card card) {
