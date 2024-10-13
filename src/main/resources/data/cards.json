@@ -1,0 +1,37 @@
+{
+  "cards": [
+    {
+      "id": null,
+      "correct": null,
+      "wrong": null,
+      "skipped": null,
+      "question": "Princes",
+      "answer": "Elsa",
+      "category": "EASY",
+      "dateCreated": null,
+      "dateEdited": null
+    },
+    {
+      "id": null,
+      "correct": null,
+      "wrong": null,
+      "skipped": null,
+      "question": "Mikey",
+      "answer": "Mouse",
+      "category": "MEDIUM",
+      "dateCreated": null,
+      "dateEdited": null
+    },
+    {
+      "id": null,
+      "correct": null,
+      "wrong": null,
+      "skipped": null,
+      "question": "Minny",
+      "answer": "Mouse",
+      "category": "HARD",
+      "dateCreated": null,
+      "dateEdited": null
+    }
+  ]
+}
