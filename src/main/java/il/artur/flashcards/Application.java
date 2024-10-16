@@ -25,7 +25,17 @@ public class Application {
 	@Bean
 	CommandLineRunner card(CardRepository cardRepository) {
 		return args -> {
-			Card card = new Card(null, null, null, null, "Foo", "Bar", Category.EASY, null, null);
+			Card card = new Card(
+					null,
+					null,
+					null,
+					null,
+					"Foo",
+					"Bar",
+					Category.EASY,
+					null,
+					null
+			);
 			cardRepository.create(card);
 		};
 	}
