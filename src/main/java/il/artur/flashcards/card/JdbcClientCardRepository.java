@@ -12,12 +12,12 @@ import org.springframework.util.Assert;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class CardRepository {
+public class JdbcClientCardRepository {
     private final JdbcClient jdbcClient;
     private final List<Card> cards = new ArrayList<>();
-    private static final Logger log = LoggerFactory.getLogger(CardRepository.class);
+    private static final Logger log = LoggerFactory.getLogger(JdbcClientCardRepository.class);
 
-    public CardRepository(JdbcClient jdbcClient) {
+    public JdbcClientCardRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 

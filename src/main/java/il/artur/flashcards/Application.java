@@ -4,13 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import il.artur.flashcards.card.Card;
 import il.artur.flashcards.card.Category;
-import il.artur.flashcards.card.CardRepository;
+import il.artur.flashcards.card.JdbcClientCardRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class Application {
@@ -23,7 +21,7 @@ public class Application {
 	}
 
 	@Bean
-	CommandLineRunner card(CardRepository cardRepository) {
+	CommandLineRunner card(JdbcClientCardRepository jdbcClientCardRepository) {
 		return args -> {
 			Card card = new Card(
 					null,
@@ -36,7 +34,7 @@ public class Application {
 					null,
 					null
 			);
-			cardRepository.create(card);
+			jdbcClientCardRepository.create(card);
 		};
 	}
 }

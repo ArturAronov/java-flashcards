@@ -13,21 +13,21 @@ import java.io.InputStream;
 @Component
 public class CardJsonDataLoader implements CommandLineRunner {
     private final ObjectMapper objectMapper;
-    private final CardRepository cardRepository;
+    private final JdbcClientCardRepository jdbcClientCardRepository;
     private static final Logger log = LoggerFactory.getLogger(CardJsonDataLoader.class);
 
-    public CardJsonDataLoader(CardRepository cardRepository, ObjectMapper objectMapper) {
-        this.cardRepository = cardRepository;
+    public CardJsonDataLoader(JdbcClientCardRepository jdbcClientCardRepository, ObjectMapper objectMapper) {
+        this.jdbcClientCardRepository = jdbcClientCardRepository;
         this.objectMapper = objectMapper;
     }
 
     @Override
     public void run(String ...args) throws Exception {
-        if(cardRepository.count() < 10) {
+        if(jdbcClientCardRepository.count() < 10) {
             try(InputStream inputStream = TypeReference.class.getResourceAsStream("/data/cards.json")) {
                 Cards allCards = objectMapper.readValue(inputStream, Cards.class);
                 log.info("Reading {} from JSON data and saving to database", allCards.cards().size());
-                cardRepository.saveAll(allCards.cards());
+                jdbcClientCardRepository.saveAll(allCards.cards());
             } catch (IOException e) {
                 throw new RuntimeException("Failed to read JSON data", e);
             }
