@@ -1,11 +1,11 @@
 https://github.com/danvega/fcc-spring-boot-3  
-https://www.youtube.com/watch?v=31KTdfRH6nY&t=4145s  
+https://www.youtube.com/watch?v=31KTdfRH6nY 
 2:13:00
 
 - `./mvn spring-boot:run`  
 - `CommandLineRunner` is functional interface  
 - Functional interface in Java is an interface that has a single abstract method, which in my case is method `card` inside the Application. Because it's functional interface, it can be used as lambda expression. Therefor no need to implement class
-
+- `REST Client` tool to call third party APIs.
 
 ![pic1.jpeg](resources/pic1.jpeg)
 
